@@ -1,0 +1,36 @@
+import Image from 'next/image';
+import React from 'react'
+
+interface Props {
+    rating: number
+}
+
+const RatingStars = ({ rating }: Props) => {
+    const roundedRating = Math.round(rating * 2) / 2;
+
+    return (
+        <div className="flex items-center">
+            {[...Array(5)].map((_, index) => {
+                const starClass =
+                    index + 0.5 === roundedRating
+                        ? 'text-[#FF8412]'
+                        : index < roundedRating
+                            ? 'text-[#FF8412]'
+                            : 'text-[#C9C9C9]';
+
+                return (
+                    <svg
+                        key={index}
+                        className={`h-5 w-4 fill-current ${starClass}`}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 12 11"
+                    >
+                        <path d="M11.0831 4.47381C11.0023 4.23298 10.7607 4.06746 10.4203 4.01963L7.72134 3.64013L6.51432 1.27385C6.36209 0.975464 6.12473 0.804321 5.86304 0.804321C5.60136 0.804321 5.364 0.975464 5.21179 1.27385L4.00481 3.64011L1.30577 4.01961C0.9654 4.06744 0.723831 4.23298 0.642952 4.47377C0.562095 4.71458 0.656975 4.98587 0.903219 5.21812L2.85625 7.05999L2.3952 9.66087C2.33457 10.003 2.43753 10.2076 2.53461 10.3189C2.64814 10.4492 2.81377 10.521 3.00099 10.521C3.14254 10.521 3.29328 10.4808 3.44895 10.4016L5.86304 9.17364L8.27714 10.4016C8.43285 10.4808 8.58357 10.521 8.72514 10.521H8.72518C8.91242 10.521 9.07805 10.4492 9.19159 10.3189C9.28864 10.2076 9.39162 10.003 9.33098 9.66083L8.86986 7.06001L10.8229 5.21816C11.0692 4.98591 11.164 4.7146 11.0831 4.47381Z" />
+                    </svg>
+                );
+            })}
+        </div>
+    );
+}
+
+export default RatingStars
